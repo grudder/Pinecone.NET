@@ -74,9 +74,6 @@ namespace Pinecone.Controllers
                 // 渠道访问次数加1
                 channel1User.Channel1VisitCount++;
                 _db.SaveChanges();
-
-                // 将渠道1的标识记入Session
-                Session["isChannel1"] = true;
             }
             else
             {

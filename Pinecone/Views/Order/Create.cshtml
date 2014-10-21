@@ -1,4 +1,4 @@
-@model Pinecone.Models.Order
+﻿@model Pinecone.Models.Order
 
 <div>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
@@ -33,38 +33,85 @@
     <img id="imgTop" src='@Url.Content("~/img/p4/p41.jpg")' />
     <div class="container" style="padding-bottom: 20px">
         <div class="row" style="background-color: white; padding-top: 20px">
-            @using (Html.BeginForm("Create", "Order", FormMethod.Post, new { id = "form1"})) 
+            @using (Html.BeginForm("Create", "Order", FormMethod.Post, new
+            {
+                id = "form1"
+            }))
             {
                 @Html.AntiForgeryToken()
-    
+
                 <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new
+               {
+                   @class = "text-danger"
+               })
                     <div class="form-group">
-                        @Html.LabelFor(model => model.ReveiverName, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        @Html.LabelFor(model => model.ReveiverName, new
+                   {
+                       @class = "control-label col-xs-3",
+                       style = "text-align: right; white-space: nowrap"
+                   })
                         <div class="col-xs-9">
-                            @Html.TextBoxFor(model => model.ReveiverName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.ReveiverName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(model => model.ReveiverName, new
+                       {
+                           @class = "form-control"
+                       })
+                            @Html.ValidationMessageFor(model => model.ReveiverName, "", new
+                       {
+                           @class = "text-danger"
+                       })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Mobile, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        @Html.LabelFor(model => model.Mobile, new
+                   {
+                       @class = "control-label col-xs-3",
+                       style = "text-align: right; white-space: nowrap"
+                   })
                         <div class="col-xs-9">
-                            @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(model => model.Mobile, new
+                       {
+                           @class = "form-control"
+                       })
+                            @Html.ValidationMessageFor(model => model.Mobile, "", new
+                       {
+                           @class = "text-danger"
+                       })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Address, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        @Html.LabelFor(model => model.Address, new
+                   {
+                       @class = "control-label col-xs-3",
+                       style = "text-align: right; white-space: nowrap"
+                   })
                         <div class="col-xs-9">
-                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", rows = 2 })
-                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            @Html.TextAreaFor(model => model.Address, new
+                       {
+                           @class = "form-control",
+                           rows = 2
+                       })
+                            @Html.ValidationMessageFor(model => model.Address, "", new
+                       {
+                           @class = "text-danger"
+                       })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Remark, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        @Html.LabelFor(model => model.Remark, new
+                   {
+                       @class = "control-label col-xs-3",
+                       style = "text-align: right; white-space: nowrap"
+                   })
                         <div class="col-xs-9">
-                            @Html.TextBoxFor(model => model.Remark, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(model => model.Remark, new
+                       {
+                           @class = "form-control"
+                       })
+                            @Html.ValidationMessageFor(model => model.Remark, "", new
+                       {
+                           @class = "text-danger"
+                       })
                         </div>
                     </div>
                     <p class="text-center">
@@ -88,19 +135,19 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
-	    var _ratio = 1.0;
+        var _ratio = 1.0;
 
-	    $(function () {
-	        $("body").css("background-color", "#e3e2e2");
+        $(function () {
+            $("body").css("background-color", "#e3e2e2");
 
-	        scalingByRatio();
+            scalingByRatio();
 
             // 以AJAX方式提交表单
             $('#form1').submit(function () {
-				// 不再记录订单信息，直接跳转
-				location.href = '@Url.Action("Share1", "Home")';
-				return;
-				
+                // 不再记录订单信息，直接跳转
+                location.href = '@Url.Action("Share1", "Home")';
+                return;
+
                 if ($(this).valid()) {
                     $.ajax({
                         url: this.action,
@@ -129,47 +176,47 @@
                 }
                 return false;
             });
-	    });
+        });
 
-	    function scalingByRatio() {
-		    var width = $(document.body).width();
-		    _ratio = parseFloat(width / 640);
+        function scalingByRatio() {
+            var width = $(document.body).width();
+            _ratio = parseFloat(width / 640);
 
-		    $(".container").css({
-			    "padding-left" : 50 * _ratio,
-			    "padding-right" : 50 * _ratio
-		    });
-		    $(".row").css({
-			    "padding-left" : 20 * _ratio,
-			    "padding-right" : 20 * _ratio
-		    });
-		    $("#imgTop").css({
-			    "width" : 640 * _ratio,
-			    "height" : 214 * _ratio
-		    });
-		    $(".carousel-inner img").css({
-		        "width": 640 * _ratio,
-		        "height": 427 * _ratio
-		    });
-		    $("p").css({
-			    "font-size" : 28 * _ratio + "px"
-		    });
-		    $("label").css({
-			    "font-size" : 26 * _ratio + "px"
-		    });
-		    $("#linkSubmit").css({
-			    "width" : 300 * _ratio,
-			    "font-size" : 32 * _ratio + "px"
-		    });
+            $(".container").css({
+                "padding-left": 50 * _ratio,
+                "padding-right": 50 * _ratio
+            });
+            $(".row").css({
+                "padding-left": 20 * _ratio,
+                "padding-right": 20 * _ratio
+            });
+            $("#imgTop").css({
+                "width": 640 * _ratio,
+                "height": 214 * _ratio
+            });
+            $(".carousel-inner img").css({
+                "width": 640 * _ratio,
+                "height": 427 * _ratio
+            });
+            $("p").css({
+                "font-size": 28 * _ratio + "px"
+            });
+            $("label").css({
+                "font-size": 26 * _ratio + "px"
+            });
+            $("#linkSubmit").css({
+                "width": 300 * _ratio,
+                "font-size": 32 * _ratio + "px"
+            });
 
-		    $("#imgResult").css({
-		        "width": 640 * _ratio,
-		        "height": 1080 * _ratio
-		    });
-	    }
+            $("#imgResult").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+        }
 
-	    function goHome() {
-	        location.href = '@Url.Action("Index", "Home")';
-	    }
+        function goHome() {
+            location.href = '@Url.Action("Index", "Home")';
+        }
     </script>
 }

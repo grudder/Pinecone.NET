@@ -2,7 +2,7 @@
 <img id="imgShare" src='@Url.Content("~/img/person/right.png")' onclick="share()" style="cursor: pointer; position: absolute; z-index: 1; left: 545px; top: 650px" />
 
 <div id="page" style="display: none">
-    <img id="imgPerson" src="@ViewBag.ImgUrl" style="position: absolute; z-index: 0" />
+    <img id="imgPerson" src="@ViewBag.ImgUrl" onclick="history.back()" style="cursor: pointer; position: absolute; z-index: 0" />
 </div>
 
 @section Scripts {
@@ -49,24 +49,36 @@
                 "width": 640 * _ratio,
                 "height": 1080 * _ratio
             });
+            
+            if (_channel1 == "") {
+                $("#imgBack").css({
+                    "width": 53 * _ratio,
+                    "height": 48 * _ratio,
+                    "left": 40 * _ratio,
+                    "top": 650 * _ratio
+                });
 
-            $("#imgBack").css({
-                "width": 53 * _ratio,
-                "height": 48 * _ratio,
-                "left": 40 * _ratio,
-                "top": 650 * _ratio
-            });
-
-            $("#imgShare").css({
-                "width": 56 * _ratio,
-                "height": 56 * _ratio,
-                "left": 545 * _ratio,
-                "top": 650 * _ratio
-            });
+                $("#imgShare").css({
+                    "width": 56 * _ratio,
+                    "height": 56 * _ratio,
+                    "left": 545 * _ratio,
+                    "top": 650 * _ratio
+                });
+            }
+            else {
+                $("#imgBack").hide();
+                $("#imgShare").hide();
+            }
         }
 
         function share() {
-            location.href = '@Url.Action("Share", "Home")';
+            if (_channel1 == "") {
+                location.href = '@Url.Action("Share", "Home")';
+            }
+            else {
+                // channel1跳转路径
+	            location.href = '@Url.Action("Share1", "Home")';
+			}
         }
     </script>
 }

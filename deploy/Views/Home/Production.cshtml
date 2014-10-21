@@ -13,6 +13,15 @@
         <div class="swiper-slide">
             <img src='@Url.Content("~/img/p2/p24.jpg")' style="position: absolute; z-index: 0" />
         </div>
+        @if (Session["Channel1"] != null && Session["Channel1"].ToString() != "")
+        {
+            <div class="swiper-slide">
+                <img src='@Url.Content("~/img/p2/p25.jpg")' style="position: absolute; z-index: 0" />
+            </div>
+            <div class="swiper-slide">
+                <img src='@Url.Content("~/img/p2/p26.jpg")' style="position: absolute; z-index: 0" />
+            </div>
+        }
     </div>
 </div>
 
@@ -40,6 +49,7 @@
                 });
             }, 1600);
 
+            var size = $(".swiper-wrapper").children().size();
             var mySwiper = $(".swiper-container").swiper({
                 mode: "vertical",
                 swipeToPrev: false,
@@ -49,12 +59,16 @@
                     _prevIndex = swiper.activeIndex;
                 },
                 onTouchEnd: function (swiper) {
-                    if (_prevIndex == 3 && swiper.activeIndex == 3) {
-                        location.href = '@Url.Action("List", "Person")';
+                    if (_prevIndex == size - 1 && swiper.activeIndex == size - 1) {
+                        if (_channel1 != "") {
+                            location.href = '@Url.Action("Channel1", "Person")';
+                        }
+                        else {
+                            location.href = '@Url.Action("List", "Person")';
+                        }
                     }
                 }
             });
-
         });
 
         function scalingByRatio() {

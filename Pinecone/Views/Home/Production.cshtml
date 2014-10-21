@@ -13,7 +13,7 @@
         <div class="swiper-slide">
             <img src='@Url.Content("~/img/p2/p24.jpg")' style="position: absolute; z-index: 0" />
         </div>
-        @if (Convert.ToBoolean(Session["isChannel1"]))
+        @if (Session["Channel1"] != null && Session["Channel1"].ToString() != "")
         {
             <div class="swiper-slide">
                 <img src='@Url.Content("~/img/p2/p25.jpg")' style="position: absolute; z-index: 0" />
@@ -32,7 +32,6 @@
     <script type="text/javascript">
         var _ratio = 1.0;
         var _prevIndex = 0;
-        var _isChannel1 = '@Session["isChannel1"]'.toLowerCase();
 
         $(function () {
             var width = $(document.body).width();
@@ -61,7 +60,7 @@
                 },
                 onTouchEnd: function (swiper) {
                     if (_prevIndex == size - 1 && swiper.activeIndex == size - 1) {
-                        if (_isChannel1 == "true") {
+                        if (_channel1 != "") {
                             location.href = '@Url.Action("Channel1", "Person")';
                         }
                         else {

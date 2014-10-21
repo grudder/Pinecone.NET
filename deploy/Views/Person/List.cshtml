@@ -1,0 +1,136 @@
+﻿<div id="page" style="display: none">
+	<div class="row">
+		<div class="col-sm-12">
+			<img id="topImg" src='@Url.Content("~/img/p3/p31.jpg")' />
+		</div>
+	</div>
+	<br />
+	<p class="text-center">
+		<a id="linkButton" href='@Url.Action("Share", "Home")' class="btn btn-primary btn-lg" style="width: 500px; font-size: 36px; background: #1c2c58">购买及分享</a>
+	</p>
+	<div id="avatar" class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/1s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/2s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/3s.jpg")' />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/4s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/p3/p32.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/5s.jpg")' />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/6s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/7s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/8s.jpg")' />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/9s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/10s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/11s.jpg")' />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/12s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/13s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/14s.jpg")' />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/15s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/16s.jpg")' />
+			</div>
+			<div class="col-xs-4">
+				<img src='@Url.Content("~/img/person/17s.jpg")' />
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var _ratio = 1.0;
+
+    	$(function () {
+    	    $("body").css("background-color", "#e3e2e2");
+
+    		$("#avatar > div.row").css({
+    			"margin-top": "20px",
+    			"margin-bottom": "20px"
+    		});
+    		
+			$("#avatar img").each(function(index, element) {
+				var img = $(element);
+            	var imgUrl = img.attr("src");
+            	if (imgUrl.indexOf("/img/person/") >= 0) {
+            		img.attr("title", "点击看大图");
+            		img.css("cursor", "pointer");
+            		
+            		img.on("click", function(){
+						location.href = '@Url.Action("Detail")' + "?imgUrl=" + encodeURI(imgUrl);
+					});
+            	}
+            });
+			
+    	    $("#page").fadeIn(1000);
+			
+    	    scalingByRatio();
+
+            // channel1跳转路径
+    	    var isChannel1 = '@Session["isChannel1"]';
+            if (isChannel1.toLowerCase() == "true") {
+                $("#linkButton").attr("href", '@Url.Action("Share1", "Home")');
+            }
+	    });
+    	
+    	function scalingByRatio() {
+    		var width = $(document.body).width();
+    		_ratio = parseFloat(width / 640);
+    		
+			$("#topImg").css({
+		        "width": 640 * _ratio,
+		        "height": 336 * _ratio
+		    });
+			$("#avatar img").css({
+		        "width": 167 * _ratio,
+		        "height": 167 * _ratio
+		    });
+			
+			$("#linkButton").css({
+		        "width": 500 * _ratio,
+		        "font-size": 36 * _ratio + "px"
+		    });
+    	}
+	</script>
+}

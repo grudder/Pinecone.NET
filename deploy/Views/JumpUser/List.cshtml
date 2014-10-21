@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Pinecone.Models.JumpUser>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>用户管理</h2>
+            <hr />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MemberVisitCount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Link1VisitCount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Link2VisitCount)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MemberVisitCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Link1VisitCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Link2VisitCount)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

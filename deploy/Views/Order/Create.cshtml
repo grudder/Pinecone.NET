@@ -1,0 +1,168 @@
+﻿@model Pinecone.Models.Order
+
+<div>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src='@Url.Content("~/img/p4/p42/1.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/p42/2.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/p42/3.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/p42/4.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/p42/5.jpg")' />
+            </div>
+        </div>
+    </div>
+    <img id="imgTop" src='@Url.Content("~/img/p4/p41.jpg")' />
+    <div class="container" style="padding-bottom: 20px">
+        <div class="row" style="background-color: white; padding-top: 20px">
+            @using (Html.BeginForm("Create", "Order", FormMethod.Post, new { id = "form1"})) 
+            {
+                @Html.AntiForgeryToken()
+    
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ReveiverName, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(model => model.ReveiverName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ReveiverName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Mobile, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        <div class="col-xs-9">
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", rows = 2 })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Remark, new { @class = "control-label col-xs-3", style = "text-align: right; white-space: nowrap" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(model => model.Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <p class="text-center">
+                        <button type="submit" class="btn btn-lg btn-primary" style="background-color: #1c2c58">
+                            点击提交
+                        </button>
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<img id="imgResult" src='@Url.Content("~/img/ok.png")' style="display: none; position: absolute; z-index: 1; left: 0; top: 0" />
+<div id="linkHome" title="返回首页" onclick="goHome()" style="display: none; position: absolute; z-index: 2; left: 210px; top: 726px; width: 221px; height: 66px; cursor: pointer"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+	    var _ratio = 1.0;
+
+	    $(function () {
+	        $("body").css("background-color", "#e3e2e2");
+
+	        scalingByRatio();
+
+            // 以AJAX方式提交表单
+            $('#form1').submit(function () {
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            // 直接跳转
+                            location.href = '@Url.Action("Share1", "Home")';
+                            return;
+
+                            // 显示提示遮罩
+                            $("#imgResult").show();
+
+                            $("#linkHome").css({
+                                "left": 210 * _ratio,
+                                "top": 726 * _ratio,
+                                "width": 221 * _ratio,
+                                "height": 66 * _ratio
+                            });
+                            $("#linkHome").show();
+                        },
+                        error: function (xmlHttpRequest, textStatus, errorThrown) {
+                            alert("请稍后重试...");
+                        }
+                    });
+                }
+                return false;
+            });
+	    });
+
+	    function scalingByRatio() {
+		    var width = $(document.body).width();
+		    _ratio = parseFloat(width / 640);
+
+		    $(".container").css({
+			    "padding-left" : 50 * _ratio,
+			    "padding-right" : 50 * _ratio
+		    });
+		    $(".row").css({
+			    "padding-left" : 20 * _ratio,
+			    "padding-right" : 20 * _ratio
+		    });
+		    $("#imgTop").css({
+			    "width" : 640 * _ratio,
+			    "height" : 214 * _ratio
+		    });
+		    $(".carousel-inner img").css({
+		        "width": 640 * _ratio,
+		        "height": 427 * _ratio
+		    });
+		    $("p").css({
+			    "font-size" : 28 * _ratio + "px"
+		    });
+		    $("label").css({
+			    "font-size" : 26 * _ratio + "px"
+		    });
+		    $("button").css({
+			    "width" : 300 * _ratio,
+			    "font-size" : 32 * _ratio + "px"
+		    });
+
+		    $("#imgResult").css({
+		        "width": 640 * _ratio,
+		        "height": 1080 * _ratio
+		    });
+	    }
+
+	    function goHome() {
+	        location.href = '@Url.Action("Index", "Home")';
+	    }
+    </script>
+}

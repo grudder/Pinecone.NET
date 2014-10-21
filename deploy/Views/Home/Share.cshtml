@@ -1,0 +1,117 @@
+﻿<div>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src='@Url.Content("~/img/p4/1.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/2.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/3.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/4.jpg")' />
+            </div>
+            <div class="item">
+                <img src='@Url.Content("~/img/p4/5.jpg")' />
+            </div>
+        </div>
+    </div>
+    <p>
+        <img id="topImg" src='@Url.Content("~/img/p4/p42.jpg")' style="width: 640px; height: 152px" />
+    </p>
+    <p class="text-center">
+        <a href="http://wd.koudai.com/item.html?itemID=280278463&wfr=c" class="btn btn-primary btn-lg" style="background: #1c2c58; width: 400px">付运费抢松塔（限购一颗）</a>
+    </p>
+    <p class="text-center">
+        <a href="http://wd.koudai.com/item.html?itemID=280276733&wfr=c" class="btn btn-primary btn-lg" style="background: #1c2c58; width: 400px">点击参与预售</a>
+    </p>
+    <p class="text-center">
+        <button id="btnShare" class="btn btn-warning btn-lg" onclick="showShare()" style="background: #f26522; width: 400px; color: white">点击分享页面</button>
+    </p>
+</div>
+
+<img id="shareImg" src='@Url.Content("~/img/p4/share.png")' style="display: none; position: absolute; z-index: 1; left: 0; top: 0" />
+<div id="linkHome" title="返回首页" onclick="goHome()" style="display: none; position: absolute; z-index: 2; left: 210px; top: 726px; width: 221px; height: 66px; cursor: pointer"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var _ratio = 1.0;
+
+        var _shareVisible = false;
+
+        $(function () {
+            scalingByRatio();
+
+            $(document).on("click", function () {
+                if (event.srcElement.id == "btnShare") {
+                    return;
+                }
+
+                if (_shareVisible) {
+                    $("#shareImg").hide();
+                    $("#linkHome").hide();
+                    _shareVisible = false;
+                }
+            });
+        });
+
+        function scalingByRatio() {
+            var width = $(document.body).width();
+            _ratio = parseFloat(width / 640);
+
+            $("body").css("background-color", "#e3e2e2");
+
+            $("#shareImg").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+
+            $("#topImg").css({
+                "width": 640 * _ratio,
+                "height": 152 * _ratio
+            });
+            $(".carousel-inner img").css({
+                "width": 640 * _ratio,
+                "height": 427 * _ratio
+            });
+            $("a").css({
+                "width": 450 * _ratio,
+                "font-size": 36 * _ratio + "px"
+            });
+            $("button").css({
+                "width": 450 * _ratio,
+                "font-size": 36 * _ratio + "px"
+            });
+        }
+
+        function showShare() {
+            $("#shareImg").show();
+
+            $("#linkHome").css({
+                "left": 210 * _ratio,
+                "top": 726 * _ratio,
+                "width": 221 * _ratio,
+                "height": 66 * _ratio
+            });
+            $("#linkHome").show();
+
+            _shareVisible = true;
+        }
+
+        function goHome() {
+            location.href = '@Url.Action("Index", "Home")';
+        }
+    </script>
+}

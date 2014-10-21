@@ -1,0 +1,79 @@
+<img id="imgBack" src='@Url.Content("~/img/person/left.png")' onclick="history.back()" style="cursor: pointer; position: absolute; z-index: 1; left: 40px; top: 650px" />
+<img id="imgShare" src='@Url.Content("~/img/person/right.png")' onclick="share()" style="cursor: pointer; position: absolute; z-index: 1; left: 545px; top: 650px" />
+
+<div id="page" style="display: none">
+    <img id="imgPerson" src="@ViewBag.ImgUrl" style="position: absolute; z-index: 0" />
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var _ratio = 1.0;
+
+        $(function () {
+            // 禁止出现滚动条
+            $("html").css("overflow", "hidden");
+            $("document").css("overflow", "hidden");
+            $("body").css("overflow", "hidden");
+
+            // 禁止页面拖动
+            if (getScrollHeight() > $(document.body).height()) {
+                document.body.addEventListener("touchmove", function (event) {
+                    event.preventDefault();
+                }, false);
+            }
+
+            $("#page").fadeIn(1000);
+
+            scalingByRatio();
+        });
+
+        /**
+		 * 获取文档内容的实际高度。
+		 */
+        function getScrollHeight() {
+            var scrollHeight = 0;
+            if (document.documentElement && document.documentElement.scrollHeight) {
+                scrollHeight = document.documentElement.scrollHeight;
+            }
+            else if (document.body) {
+                scrollHeight = document.body.scrollHeight;
+            }
+            return scrollHeight;
+        }
+
+        function scalingByRatio() {
+            var width = $(document.body).width();
+            _ratio = parseFloat(width / 640);
+
+            $("#imgPerson").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+
+            $("#imgBack").css({
+                "width": 53 * _ratio,
+                "height": 48 * _ratio,
+                "left": 40 * _ratio,
+                "top": 650 * _ratio
+            });
+
+            $("#imgShare").css({
+                "width": 56 * _ratio,
+                "height": 56 * _ratio,
+                "left": 545 * _ratio,
+                "top": 650 * _ratio
+            });
+        }
+
+        function share() {
+            // channel1跳转路径
+    	    var isChannel1 = '@Session["isChannel1"]';
+            if (isChannel1.toLowerCase() == "true") {
+                location.href = '@Url.Action("Share1", "Home")';
+            }
+			else {
+	            location.href = '@Url.Action("Share", "Home")';
+			}
+        }
+    </script>
+}

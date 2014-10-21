@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 using Pinecone.DataAccess;
@@ -14,10 +13,6 @@ namespace Pinecone.Controllers
 
         public ActionResult Index(string member, string channel, string channel1)
         {
-            if (member == null)
-            {
-                ViewBag.Member = "";
-            }
             User memberUser = _db.Users.SingleOrDefault(u => u.Sn == member);
             if (memberUser != null && memberUser.Id > 0)
             {
@@ -33,16 +28,15 @@ namespace Pinecone.Controllers
                 // 成员访问次数加1
                 memberUser.MemberVisitCount++;
                 _db.SaveChanges();
-
-                ViewBag.Member = member;
             }
+            else
+            {
+                member = "";
+            }
+            ViewBag.Member = member;
             // 将用户信息记入Session
             Session["user"] = memberUser;
 
-            if (channel == null)
-            {
-                ViewBag.Channel = "";
-            }
             User channelUser = _db.Users.SingleOrDefault(u => u.Sn == channel);
             if (channelUser != null && channelUser.Id > 0)
             {
@@ -58,14 +52,13 @@ namespace Pinecone.Controllers
                 // 渠道访问次数加1
                 channelUser.ChannelVisitCount++;
                 _db.SaveChanges();
-
-                ViewBag.Channel = channel;
             }
-
-            if (channel1 == null)
+            else
             {
-                ViewBag.Channel1 = "";
+                channel = "";
             }
+            ViewBag.Channel = channel;
+
             User channel1User = _db.Users.SingleOrDefault(u => u.Sn == channel1);
             if (channel1User != null && channel1User.Id > 0)
             {
@@ -82,10 +75,14 @@ namespace Pinecone.Controllers
                 channel1User.Channel1VisitCount++;
                 _db.SaveChanges();
 
-                ViewBag.Channel1 = channel1;
+                // 将渠道1的标识记入Session
+                Session["isChannel1"] = true;
             }
-            // 将渠道1的标识记入Session
-            Session["isChannel1"] = true;
+            else
+            {
+                channel1 = "";
+            }
+            Session["Channel1"] = channel1;
 
             return View();
         }

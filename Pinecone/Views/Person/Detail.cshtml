@@ -1,8 +1,8 @@
-<img id="imgBack" src='@Url.Content("~/img/person/left.png")' onclick="history.back()" style="cursor: pointer; position: absolute; z-index: 1; left: 40px; top: 650px" />
-<img id="imgShare" src='@Url.Content("~/img/person/right.png")' onclick="share()" style="cursor: pointer; position: absolute; z-index: 1; left: 545px; top: 650px" />
+@*<img id="imgBack" src='@Url.Content("~/img/person/left.png")' onclick="history.back()" style="cursor: pointer; position: absolute; z-index: 1; left: 40px; top: 650px" />
+<img id="imgShare" src='@Url.Content("~/img/person/right.png")' onclick="share()" style="cursor: pointer; position: absolute; z-index: 1; left: 545px; top: 650px" />*@
 
 <div id="page" style="display: none">
-    <img id="imgPerson" src="@ViewBag.ImgUrl" style="position: absolute; z-index: 0" />
+    <img id="imgPerson" src="@ViewBag.ImgUrl" onclick="history.back()" style="cursor: pointer; position: absolute; z-index: 0" />
 </div>
 
 @section Scripts {
@@ -50,22 +50,22 @@
                 "height": 1080 * _ratio
             });
 
-            $("#imgBack").css({
-                "width": 53 * _ratio,
-                "height": 48 * _ratio,
-                "left": 40 * _ratio,
-                "top": 650 * _ratio
-            });
+            //$("#imgBack").css({
+            //    "width": 53 * _ratio,
+            //    "height": 48 * _ratio,
+            //    "left": 40 * _ratio,
+            //    "top": 650 * _ratio
+            //});
 
-            $("#imgShare").css({
-                "width": 56 * _ratio,
-                "height": 56 * _ratio,
-                "left": 545 * _ratio,
-                "top": 650 * _ratio
-            });
+            //$("#imgShare").css({
+            //    "width": 56 * _ratio,
+            //    "height": 56 * _ratio,
+            //    "left": 545 * _ratio,
+            //    "top": 650 * _ratio
+            //});
         }
 
-        function share() {
+        @*function share() {
             // channel1跳转路径
     	    var isChannel1 = '@Session["isChannel1"]';
             if (isChannel1.toLowerCase() == "true") {
@@ -74,6 +74,6 @@
 			else {
 	            location.href = '@Url.Action("Share", "Home")';
 			}
-        }
+        }*@
     </script>
 }

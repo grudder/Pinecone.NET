@@ -216,8 +216,12 @@
     <Content Include="img\p2\p22.jpg" />
     <Content Include="img\p2\p23.jpg" />
     <Content Include="img\p2\p24.jpg" />
+    <Content Include="img\p2\p25.jpg" />
+    <Content Include="img\p2\p26.jpg" />
     <Content Include="img\p3\p31.jpg" />
     <Content Include="img\p3\p32.jpg" />
+    <Content Include="img\p3\p33.jpg" />
+    <Content Include="img\p3\p34.jpg" />
     <Content Include="img\p4\1.jpg" />
     <Content Include="img\p4\2.jpg" />
     <Content Include="img\p4\3.jpg" />
@@ -310,6 +314,7 @@
     <Content Include="Views\Home\Share1.cshtml" />
     <Content Include="Views\JumpUser\List.cshtml" />
     <Content Include="Views\JumpUser\Visit.cshtml" />
+    <Content Include="Views\Person\Channel1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

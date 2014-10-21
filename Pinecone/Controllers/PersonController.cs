@@ -15,6 +15,12 @@ namespace Pinecone.Controllers
             return View();
         }
 
+        // GET: Person/Channel1
+        public ActionResult Channel1()
+        {
+            return View();
+        }
+
         // GET: Person/Detail
         public ActionResult Detail(string imgUrl)
         {

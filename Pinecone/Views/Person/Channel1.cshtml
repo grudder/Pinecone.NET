@@ -1,13 +1,20 @@
 ﻿<div id="page" style="display: none">
     <div class="row">
-        <div class="col-sm-12">
-            <img id="topImg" src='@Url.Content("~/img/p3/p31.jpg")' />
+        <div class="col-xs-12">
+            <img id="imgTop" src='@Url.Content("~/img/p3/p33.jpg")' />
+        </div>
+        <div class="col-xs-6">
+            <a id="linkButton1" href="http://wd.koudai.com/item.html?itemID=293750930" class="btn btn-primary btn-lg" style="width: 250px; font-size: 36px; color: white; background: #f26522">两个装预售</a>
+        </div>
+        <div class="col-xs-6">
+            <a id="linkButton2" href="http://wd.koudai.com/item.html?itemID=280276733" class="btn btn-primary btn-lg" style="width: 250px; font-size: 36px; color: white; background: #f26522">四个装预售</a>
         </div>
     </div>
-    <br />
-    <p class="text-center">
-        <a id="linkButton" href='@Url.Action("Share", "Home")' class="btn btn-primary btn-lg" style="width: 500px; font-size: 36px; background: #1c2c58">购买及分享</a>
-    </p>
+    <div class="row">
+        <div class="col-xs-12">
+            <img id="imgMiddle" src='@Url.Content("~/img/p3/p34.jpg")' />
+        </div>
+    </div>
     <div id="avatar" class="container-fluid">
         <div class="row">
             <div class="col-xs-4">
@@ -112,18 +119,27 @@
             var width = $(document.body).width();
             _ratio = parseFloat(width / 640);
 
-            $("#topImg").css({
+            $("#imgTop").css({
                 "width": 640 * _ratio,
-                "height": 336 * _ratio
+                "height": 316 * _ratio
+            });
+            $("#linkButton1").css({
+                "width": 250 * _ratio,
+                "font-size": 36 * _ratio + "px",
+                "margin-left": 40 * _ratio + "px"
+            });
+            $("#linkButton2").css({
+                "width": 250 * _ratio,
+                "font-size": 36 * _ratio + "px",
+                "margin-left": 15 * _ratio + "px"
+            });
+            $("#imgMiddle").css({
+                "width": 640 * _ratio,
+                "height": 332 * _ratio
             });
             $("#avatar img").css({
                 "width": 167 * _ratio,
                 "height": 167 * _ratio
-            });
-
-            $("#linkButton").css({
-                "width": 500 * _ratio,
-                "font-size": 36 * _ratio + "px"
             });
         }
     </script>

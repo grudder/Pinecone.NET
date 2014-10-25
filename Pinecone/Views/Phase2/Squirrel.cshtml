@@ -2,19 +2,18 @@
     <img id="background" src='@Url.Content("~/img/phase2/p2.jpg")' style="position: absolute; z-index: 0" />
     <img id="pinecone" src='@Url.Content("~/img/phase2/pinecone.png")' style="position: absolute; z-index: 1; left: 170px; top: 125px" />
     <a href="javascript: squirrelUp()">
-        <img id="squirrel" src='@Url.Content("~/img/phase2/squirrel.png")' style="position: absolute; z-index: 1; left: 300px; top: 455px" />
+        <img id="squirrel" src='@Url.Content("~/img/phase2/squirrel.png")' style="position: absolute; z-index: 3; left: 300px; top: 455px" />
     </a>
-       <img id="button" src='@Url.Content("~/img/phase2/p21.png")' style="position: absolute; z-index: 1; left: 26px; top: 356px" />
+    <img id="button" src='@Url.Content("~/img/phase2/p21.png")' style="position: absolute; z-index: 2; left: 26px; top: 356px" />
 </div>
+
 @section Scripts {
     <script type="text/javascript">
         var _ratio = 1.0;
         var _clickCount = 0;
 
         $(function () {
-			_isIndex = true;
-			_member = "@ViewBag.Member";
-            _channel = "@ViewBag.Channel";
+            _isPhase2 = true;
 
             var width = $(document.body).width();
             _ratio = parseFloat(width / 640);
@@ -43,40 +42,32 @@
             });
 
             $("#button").css({
-                "width":608 * _ratio,
+                "width": 608 * _ratio,
                 "height": 488 * _ratio,
                 "left": 26 * _ratio,
-                "top": 356 * _ratio
+                "top": 406 * _ratio
             });
         }
 
         function squirrelUp() {
-            if (_clickCount < 3) {
+            if (_clickCount < 1) {
                 _clickCount++;
 
-                // 隐藏按钮
-                $("#button").hide(1, function () {
-                    // 松鼠向上移动
-                    var top = $("#squirrel").css("top").replace("px", "");
-                    top = parseInt(top);
-                    top -= 120 * _ratio;
-                    $("#squirrel").animate({ 'top': top + 'px' }, "normal", function () {
-                        if (_clickCount < 3) {
-                            // 显示按钮
-                            $("#button").show();
-                        }
-
-                        if (_clickCount == 3) {
-                            // 松果落下
-                            var pineconeTop = $("#background").height() - $("#pinecone").height();
-                            $("#pinecone").animate({ 'top': pineconeTop + 'px' }, 1500, function () {
-                                // 页面淡出
-                                $("#page").fadeOut(1500, function () {
-                                    location.href = '@Url.Action("Production")';
-                                });
+                // 松鼠向上移动
+                var top = $("#squirrel").css("top").replace("px", "");
+                top = parseInt(top);
+                top -= 360 * _ratio;
+                $("#squirrel").animate({ 'top': top + 'px' }, 1500, function () {
+                    if (_clickCount == 1) {
+                        // 松果落下
+                        var pineconeTop = $("#background").height() - $("#pinecone").height();
+                        $("#pinecone").animate({ 'top': pineconeTop + 'px' }, 1500, function () {
+                            // 页面淡出
+                            $("#page").fadeOut(1500, function () {
+                                location.href = '@Url.Action("Production")';
                             });
-                        }
-                    });
+                        });
+                    }
                 });
             }
         }

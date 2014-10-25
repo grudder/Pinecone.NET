@@ -1,20 +1,59 @@
-﻿<div>
-    <img id="imgBack" src='@Url.Content("~/img/phase2/p9.jpg")' style="position: absolute; z-index: 0" />
+﻿<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src='@Url.Content("~/img/phase2/p9.jpg")' />
+        </div>
+    </div>
 </div>
 
 @section Scripts {
+	<link type="text/css" rel="stylesheet" href="~/Scripts/swiper/idangerous.swiper.css" />
+    <script type="text/javascript" src="~/Scripts/swiper/idangerous.swiper.min.js"></script>
+
     <script type="text/javascript">
         var _ratio = 1.0;
+        var _prevIndex = 0;
+        var _isBottom = false;
 
-        $(function() {
+        $(function () {
+            _isPhase2 = true;
+
             var width = $(document.body).width();
             _ratio = parseFloat(width / 640);
 
             scalingByRatio();
+
+            var size = $(".swiper-wrapper").children().size();
+            var mySwiper = $(".swiper-container").swiper({
+                mode: "vertical",
+                swipeToPrev: false,
+                swipeToNext: true,
+                onSlideChangeEnd: function (swiper, direction) {
+                    swiper.params.swipeToPrev = swiper.activeIndex > 0;
+                    _prevIndex = swiper.activeIndex;
+                },
+                onTouchEnd: function (swiper) {
+                    if (!_isBottom) {
+                        window.scrollTo(0, document.body.scrollHeight);
+                        _isBottom = true;
+                    }
+                    else {
+                        location.href = '@Url.Action("Share")';
+                    }
+                }
+            });
         });
 
         function scalingByRatio() {
-            $("#imgBack").css({
+            $(".swiper-container").css({
+                "width": 640 * _ratio,
+                "height": 1664 * _ratio
+            });
+            $(".swiper-slide").css({
+                "width": 640 * _ratio,
+                "height": 1664 * _ratio
+            });
+            $(".swiper-slide img").css({
                 "width": 640 * _ratio,
                 "height": 1664 * _ratio
             });

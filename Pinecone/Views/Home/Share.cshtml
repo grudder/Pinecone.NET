@@ -42,7 +42,7 @@
     </p>
 </div>
 
-<img id="shareImg" src='@Url.Content("~/img/p4/share.png")' style="display: none; position: absolute; z-index: 1; left: 0; top: 0" />
+<img id="imgShare" src='@Url.Content("~/img/p4/share.png")' style="display: none; position: absolute; z-index: 1; left: 0; top: 0" />
 <div id="linkHome" title="返回首页" onclick="goHome()" style="display: none; position: absolute; z-index: 2; left: 210px; top: 726px; width: 221px; height: 66px; cursor: pointer"></div>
 
 @section Scripts {
@@ -60,7 +60,7 @@
                 }
 
                 if (_shareVisible) {
-                    $("#shareImg").hide();
+                    $("#imgShare").hide();
                     $("#linkHome").hide();
                     _shareVisible = false;
                 }
@@ -73,7 +73,7 @@
 
             $("body").css("background-color", "#e3e2e2");
 
-            $("#shareImg").css({
+            $("#imgShare").css({
                 "width": 640 * _ratio,
                 "height": 1080 * _ratio
             });
@@ -97,7 +97,7 @@
         }
 
         function showShare() {
-            $("#shareImg").show();
+            $("#imgShare").show();
 
             $("#linkHome").css({
                 "left": 210 * _ratio,

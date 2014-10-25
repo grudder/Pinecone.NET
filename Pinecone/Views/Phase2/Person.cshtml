@@ -1,7 +1,23 @@
 ﻿<div>
+    <img id="imgBack" src='@Url.Content("~/img/phase2/p9.jpg")' style="position: absolute; z-index: 0" />
 </div>
 
 @section Scripts {
     <script type="text/javascript">
+        var _ratio = 1.0;
+
+        $(function() {
+            var width = $(document.body).width();
+            _ratio = parseFloat(width / 640);
+
+            scalingByRatio();
+        });
+
+        function scalingByRatio() {
+            $("#imgBack").css({
+                "width": 640 * _ratio,
+                "height": 1664 * _ratio
+            });
+        }
     </script>
 }

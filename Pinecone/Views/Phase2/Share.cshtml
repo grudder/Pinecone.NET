@@ -1,7 +1,70 @@
-﻿<div>
+﻿<div id="page">
+    <img id="background" src='@Url.Content("~/img/phase2/p10.jpg")' style="position: absolute; z-index: 0" />
+    <a href="http://wd.koudai.com/?userid=213142016">
+        <img id="phase" src='@Url.Content("~/img/phase2/p101.jpg")' style="position: absolute; z-index: 1; left: 60px; top: 480px" />
+    </a>
+    <a href="javascript:showShare()">
+        <img id="share" src='@Url.Content("~/img/phase2/p102.jpg")' style="position: absolute; z-index: 1; left: 350px; top: 480px" />
+    </a>
 </div>
+<img id="imgShare" src='@Url.Content("~/img/phase2/p103.png")' style="display: none; position: absolute; z-index: 1; left: 0; top: 0" />
 
 @section Scripts {
     <script type="text/javascript">
+        var _ratio = 1.0;
+        var _shareVisible = false;
+        var _clickCount = 0;
+
+        $(function () {
+            _isIndex = true;
+            _member = "@ViewBag.Member";
+            _channel = "@ViewBag.Channel";
+
+            var width = $(document.body).width();
+            _ratio = parseFloat(width / 640);
+
+            scalingByRatio();
+
+            $(document).on("click", function () {
+                if (event.srcElement.id == "share") {
+                    return;
+                }
+
+                if (_shareVisible) {
+                    $("#imgShare").hide();
+                    _shareVisible = false;
+                }
+            });
+        });
+
+        function scalingByRatio() {
+            $("#background").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+
+            $("#phase").css({
+                "width": 227 * _ratio,
+                "height": 75 * _ratio,
+                "left": 60 * _ratio,
+                "top": 480 * _ratio
+            });
+
+            $("#share").css({
+                "width": 227 * _ratio,
+                "height": 75 * _ratio,
+                "left": 350 * _ratio,
+                "top": 480 * _ratio
+            });
+            $("#imgShare").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+        }
+
+        function showShare() {
+            $("#imgShare").show();
+            _shareVisible = true;
+        }
     </script>
 }

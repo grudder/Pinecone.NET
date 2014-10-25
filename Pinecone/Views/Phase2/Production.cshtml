@@ -1,27 +1,24 @@
 ﻿<div class="swiper-container">
-    <img id="arrow" src='@Url.Content("~/img/p2/1.png")' style="position: absolute; z-index: 1; left: 300px; top: 770px" />
+    <img id="arrow" src='@Url.Content("~/img/phase2/p11.png")' style="position: absolute; z-index: 1; left: 300px; top: 770px" />
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <img src='@Url.Content("~/img/p2/p21.jpg")' style="position: absolute; z-index: 0" />
+            <img src='@Url.Content("~/img/phase2/p3.jpg")' style="position: absolute; z-index: 0" />
         </div>
         <div class="swiper-slide">
-            <img src='@Url.Content("~/img/p2/p22.jpg")' style="position: absolute; z-index: 0" />
+            <img src='@Url.Content("~/img/phase2/p4.jpg")' style="position: absolute; z-index: 0" />
         </div>
         <div class="swiper-slide">
-            <img src='@Url.Content("~/img/p2/p23.jpg")' style="position: absolute; z-index: 0" />
+            <img src='@Url.Content("~/img/phase2/p5.jpg")' style="position: absolute; z-index: 0" />
         </div>
         <div class="swiper-slide">
-            <img src='@Url.Content("~/img/p2/p24.jpg")' style="position: absolute; z-index: 0" />
+            <img src='@Url.Content("~/img/phase2/p6.jpg")' style="position: absolute; z-index: 0" />
         </div>
-        @if (Session["Channel1"] != null && Session["Channel1"].ToString() != "")
-        {
-            <div class="swiper-slide">
-                <img src='@Url.Content("~/img/p2/p25.jpg")' style="position: absolute; z-index: 0" />
-            </div>
-            <div class="swiper-slide">
-                <img src='@Url.Content("~/img/p2/p26.jpg")' style="position: absolute; z-index: 0" />
-            </div>
-        }
+        <div class="swiper-slide">
+            <img src='@Url.Content("~/img/phase2/p7.jpg")' style="position: absolute; z-index: 0" />
+        </div>
+        <div class="swiper-slide">
+            <img src='@Url.Content("~/img/phase2/p8.jpg")' style="position: absolute; z-index: 0" />
+        </div>
     </div>
 </div>
 
@@ -60,12 +57,7 @@
                 },
                 onTouchEnd: function (swiper) {
                     if (_prevIndex == size - 1 && swiper.activeIndex == size - 1) {
-                        if (_channel1 != "") {
-                            location.href = '@Url.Action("Channel1", "Person")';
-                        }
-                        else {
-                            location.href = '@Url.Action("List", "Person")';
-                        }
+                        location.href = '@Url.Action("Person", "Phase2")';
                     }
                 }
             });

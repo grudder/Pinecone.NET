@@ -1,10 +1,11 @@
-﻿<div id="page">
+﻿<div id="page" style="display: none">
     <img id="background" src='@Url.Content("~/img/phase2/p2.jpg")' style="position: absolute; z-index: 0" />
     <img id="pinecone" src='@Url.Content("~/img/phase2/pinecone.png")' style="position: absolute; z-index: 1; left: 170px; top: 125px" />
     <a href="javascript: squirrelUp()">
-        <img id="squirrel" src='@Url.Content("~/img/phase2/squirrel.png")' style="position: absolute; z-index: 3; left: 300px; top: 455px" />
+        <img id="squirrel" src='@Url.Content("~/img/phase2/squirrel.png")' style="position: absolute; z-index: 2; left: 300px; top: 455px" />
     </a>
-    <img id="button" src='@Url.Content("~/img/phase2/p21.png")' style="position: absolute; z-index: 2; left: 26px; top: 356px" />
+    <img id="imgTopLabel" src='@Url.Content("~/img/phase2/p22.png")' style="position: absolute; z-index: 3; left: 25px; top: 350px" />
+    <img id="imgBottomLabel" src='@Url.Content("~/img/phase2/p23.png")' style="position: absolute; z-index: 3; left: 250px; top: 750px" />
 </div>
 
 @section Scripts {
@@ -19,6 +20,8 @@
             _ratio = parseFloat(width / 640);
 
             scalingByRatio();
+
+            $("#page").fadeIn(1000);
         });
 
         function scalingByRatio() {
@@ -41,11 +44,17 @@
                 "top": 455 * _ratio
             });
 
-            $("#button").css({
-                "width": 608 * _ratio,
-                "height": 488 * _ratio,
-                "left": 26 * _ratio,
-                "top": 406 * _ratio
+            $("#imgTopLabel").css({
+                "width": 604 * _ratio,
+                "height": 57 * _ratio,
+                "left": 25 * _ratio,
+                "top": 350 * _ratio
+            });
+            $("#imgBottomLabel").css({
+                "width": 342 * _ratio,
+                "height": 93 * _ratio,
+                "left": 250 * _ratio,
+                "top": 750 * _ratio
             });
         }
 

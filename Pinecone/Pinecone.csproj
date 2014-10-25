@@ -276,6 +276,8 @@
     <Content Include="img\person\9b.jpg" />
     <Content Include="img\person\9s.jpg" />
     <Content Include="img\person\left.png" />
+    <Content Include="img\Phase2\p22.png" />
+    <Content Include="img\Phase2\p23.png" />
     <Content Include="img\person\right.png" />
     <Content Include="img\Phase2\1.png" />
     <Content Include="img\Phase2\p1.jpg" />
@@ -285,7 +287,6 @@
     <Content Include="img\Phase2\p103.png" />
     <Content Include="img\Phase2\p11.png" />
     <Content Include="img\Phase2\p2.jpg" />
-    <Content Include="img\Phase2\p21.png" />
     <Content Include="img\Phase2\p3.jpg" />
     <Content Include="img\Phase2\p4.jpg" />
     <Content Include="img\Phase2\p5.jpg" />

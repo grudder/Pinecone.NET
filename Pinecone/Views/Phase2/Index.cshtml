@@ -1,10 +1,10 @@
 ﻿<div class="swiper-container">
-    <img id="arrow" src='@Url.Content("~/img/Phase2/p11.png")' style="position: absolute; z-index: 1; left: 300px; top: 770px" />
     <div class="swiper-wrapper">
         <div class="swiper-slide">
             <img src='@Url.Content("~/img/Phase2/p1.jpg")' style="position: absolute; z-index: 0" />
         </div>
     </div>
+    <img id="imgArrow" src='@Url.Content("~/img/Phase2/p11.png")' style="position: absolute; z-index: 1; left: 300px; top: 770px" />
 </div>
 
 @section Scripts {
@@ -24,11 +24,11 @@
             scalingByRatio();
 
             window.setInterval(function () {
-                $("#arrow").animate({
-                    'top': 700 * _ratio + 'px'
+                $("#imgArrow").animate({
+                    'top': $(window).height() - 64 * 3 * _ratio + 'px'
                 }, 800, function () {
-                    $("#arrow").animate({
-                        'top': 770 * _ratio + 'px'
+                    $("#imgArrow").animate({
+                        'top': $(window).height() - 64 * _ratio + 'px'
                     }, 800);
                 });
             }, 1600);
@@ -64,11 +64,11 @@
                 "height": 1080 * _ratio
             });
 
-            $("#arrow").css({
+            $("#imgArrow").css({
                 "width": 48 * _ratio,
                 "height": 64 * _ratio,
                 "left": 300 * _ratio,
-                "top": 770 * _ratio
+                "top": $(window).height() - 64 * _ratio
             });
         }
     </script>

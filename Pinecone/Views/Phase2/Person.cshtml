@@ -1,9 +1,10 @@
-﻿<div class="swiper-container">
+﻿<div id="page" style="display: none" class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <img src='@Url.Content("~/img/phase2/p9.jpg")' />
+            <img src='@Url.Content("~/img/phase2/p9.jpg")' style="position: absolute; z-index: 0" />
         </div>
     </div>
+    <img id="imgArrow" src='@Url.Content("~/img/Phase2/p11.png")' style="position: absolute; z-index: 1; left: 300px; top: 770px" />
 </div>
 
 @section Scripts {
@@ -23,7 +24,6 @@
 
             scalingByRatio();
 
-            var size = $(".swiper-wrapper").children().size();
             var mySwiper = $(".swiper-container").swiper({
                 mode: "vertical",
                 swipeToPrev: false,
@@ -42,6 +42,18 @@
                     }
                 }
             });
+
+            window.setInterval(function () {
+                $("#imgArrow").animate({
+                    'top': $(window).height() - 64 * 3 * _ratio + 'px'
+                }, 800, function () {
+                    $("#imgArrow").animate({
+                        'top': $(window).height() - 64 * _ratio + 'px'
+                    }, 800);
+                });
+            }, 1600);
+
+            $("#page").fadeIn(1000);
         });
 
         function scalingByRatio() {
@@ -56,6 +68,13 @@
             $(".swiper-slide img").css({
                 "width": 640 * _ratio,
                 "height": 1664 * _ratio
+            });
+
+            $("#imgArrow").css({
+                "width": 48 * _ratio,
+                "height": 64 * _ratio,
+                "left": 300 * _ratio,
+                "top": $(window).height() - 64 * _ratio
             });
         }
     </script>

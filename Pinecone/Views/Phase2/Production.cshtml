@@ -1,0 +1,96 @@
+﻿<div class="swiper-container">
+    <img id="arrow" src='@Url.Content("~/img/p2/1.png")' style="position: absolute; z-index: 1; left: 300px; top: 770px" />
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src='@Url.Content("~/img/p2/p21.jpg")' style="position: absolute; z-index: 0" />
+        </div>
+        <div class="swiper-slide">
+            <img src='@Url.Content("~/img/p2/p22.jpg")' style="position: absolute; z-index: 0" />
+        </div>
+        <div class="swiper-slide">
+            <img src='@Url.Content("~/img/p2/p23.jpg")' style="position: absolute; z-index: 0" />
+        </div>
+        <div class="swiper-slide">
+            <img src='@Url.Content("~/img/p2/p24.jpg")' style="position: absolute; z-index: 0" />
+        </div>
+        @if (Session["Channel1"] != null && Session["Channel1"].ToString() != "")
+        {
+            <div class="swiper-slide">
+                <img src='@Url.Content("~/img/p2/p25.jpg")' style="position: absolute; z-index: 0" />
+            </div>
+            <div class="swiper-slide">
+                <img src='@Url.Content("~/img/p2/p26.jpg")' style="position: absolute; z-index: 0" />
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+	<link type="text/css" rel="stylesheet" href="~/Scripts/swiper/idangerous.swiper.css" />
+    <script type="text/javascript" src="~/Scripts/swiper/idangerous.swiper.min.js"></script>
+
+    <script type="text/javascript">
+        var _ratio = 1.0;
+        var _prevIndex = 0;
+
+        $(function () {
+            var width = $(document.body).width();
+            _ratio = parseFloat(width / 640);
+
+            scalingByRatio();
+
+            window.setInterval(function () {
+                $("#arrow").animate({
+                    'top': 700 * _ratio + 'px'
+                }, 800, function () {
+                    $("#arrow").animate({
+                        'top': 770 * _ratio + 'px'
+                    }, 800);
+                });
+            }, 1600);
+
+            var size = $(".swiper-wrapper").children().size();
+            var mySwiper = $(".swiper-container").swiper({
+                mode: "vertical",
+                swipeToPrev: false,
+                swipeToNext: true,
+                onSlideChangeEnd: function (swiper, direction) {
+                    swiper.params.swipeToPrev = swiper.activeIndex > 0;
+                    _prevIndex = swiper.activeIndex;
+                },
+                onTouchEnd: function (swiper) {
+                    if (_prevIndex == size - 1 && swiper.activeIndex == size - 1) {
+                        if (_channel1 != "") {
+                            location.href = '@Url.Action("Channel1", "Person")';
+                        }
+                        else {
+                            location.href = '@Url.Action("List", "Person")';
+                        }
+                    }
+                }
+            });
+        });
+
+        function scalingByRatio() {
+            $(".swiper-container").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+            $(".swiper-slide").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+            $(".swiper-slide img").css({
+                "width": 640 * _ratio,
+                "height": 1080 * _ratio
+            });
+
+            $("#arrow").css({
+                "width": 48 * _ratio,
+                "height": 64 * _ratio,
+                "left": 300 * _ratio,
+                "top": 770 * _ratio
+            });
+        }
+    </script>
+}

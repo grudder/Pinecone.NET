@@ -174,6 +174,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Phase2Controller.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -276,6 +277,24 @@
     <Content Include="img\person\9s.jpg" />
     <Content Include="img\person\left.png" />
     <Content Include="img\person\right.png" />
+    <Content Include="img\Phase2\1.png" />
+    <Content Include="img\Phase2\p1.jpg" />
+    <Content Include="img\Phase2\p10.jpg" />
+    <Content Include="img\Phase2\p101.jpg" />
+    <Content Include="img\Phase2\p102.jpg" />
+    <Content Include="img\Phase2\p103.png" />
+    <Content Include="img\Phase2\p11.png" />
+    <Content Include="img\Phase2\p2.jpg" />
+    <Content Include="img\Phase2\p21.png" />
+    <Content Include="img\Phase2\p3.jpg" />
+    <Content Include="img\Phase2\p4.jpg" />
+    <Content Include="img\Phase2\p5.jpg" />
+    <Content Include="img\Phase2\p6.jpg" />
+    <Content Include="img\Phase2\p7.jpg" />
+    <Content Include="img\Phase2\p8.jpg" />
+    <Content Include="img\Phase2\p9.jpg" />
+    <Content Include="img\Phase2\pinecone.png" />
+    <Content Include="img\Phase2\squirrel.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\swiper\idangerous.swiper.css" />
@@ -315,10 +334,16 @@
     <Content Include="Views\JumpUser\Visit.cshtml" />
     <Content Include="Views\Person\Channel1.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Phase2\Index.cshtml" />
+    <Content Include="Views\Phase2\Squirrel.cshtml" />
+    <Content Include="Views\Phase2\Production.cshtml" />
+    <Content Include="Views\Phase2\Person.cshtml" />
+    <Content Include="Views\Phase2\Share.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

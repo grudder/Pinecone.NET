@@ -15,6 +15,7 @@
         var _ratio = 1.0;
         var _prevIndex = 0;
         var _isBottom = false;
+        var _intervalArrow;
 
         $(function () {
             _isPhase2 = true;
@@ -36,6 +37,23 @@
                     if (!_isBottom) {
                         window.scrollTo(0, document.body.scrollHeight);
                         _isBottom = true;
+
+                        $("#imgArrow").css({
+                            "width": 48 * _ratio,
+                            "height": 64 * _ratio,
+                            "left": 300 * _ratio,
+                            "top": $(window).scrollTop() + $(window).height() - 64 * _ratio
+                        });
+                        window.clearInterval(_intervalArrow);
+                        window.setInterval(function () {
+                            $("#imgArrow").animate({
+                                'top': $(window).scrollTop() + $(window).height() - 64 * 3 * _ratio + 'px'
+                            }, 800, function () {
+                                $("#imgArrow").animate({
+                                    'top': $(window).scrollTop() + $(window).height() - 64 * _ratio + 'px'
+                                }, 800);
+                            });
+                        }, 1600);
                     }
                     else {
                         location.href = '@Url.Action("Share")';
@@ -43,7 +61,7 @@
                 }
             });
 
-            window.setInterval(function () {
+            _intervalArrow = window.setInterval(function () {
                 $("#imgArrow").animate({
                     'top': $(window).height() - 64 * 3 * _ratio + 'px'
                 }, 800, function () {
